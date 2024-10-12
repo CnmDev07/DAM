@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ArtSpace</string>
+    <string name="tituloPrimero">La creación</string>
+    <string name="tituloSegundo">El Grito</string>
+    <string name="tituloTercero">Las meninas</string>
+    <string name="tituloCuarto">Mona Lisa</string>
+    <string name="tituloQuinto">Noche estrellada</string>
+    <string name="añoPrimero">1511</string>
+    <string name="añoSegundo">1893</string>
+    <string name="añoTercero">1656</string>
+    <string name="añoCuarto">1503</string>
+    <string name="añoQuinto">1889</string>
+</resources>
