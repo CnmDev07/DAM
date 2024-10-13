@@ -26,6 +26,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -36,12 +37,11 @@ public class RecuentoApariciones {
         RecuentoApariciones c = new RecuentoApariciones();
 
         try {
-            
-            
+
             Map<String, String> argumentos = c.comprobarArgumentos(args);
-            ArrayList<ProcessBuilder> procesos = c.PbProcesos(args, argumentos); 
-            c.lanzarProcesos(procesos, new File(argumentos.get("SALIDA"))); 
-            
+            ArrayList<ProcessBuilder> procesos = c.PbProcesos(args, argumentos);
+            c.lanzarProcesos(procesos, new File(argumentos.get("SALIDA")));
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -49,17 +49,13 @@ public class RecuentoApariciones {
         } catch (Exception e) {
             e.printStackTrace();
         }
-            
+
     }
 
-        
-
-
-    
     public Map<String, String> comprobarArgumentos(String[] args) throws IOException, InterruptedException {
-        
+
         Map<String, String> argumentos = new TreeMap<>();
-        if (args.length >= 10) { 
+        if (args.length >= 10) {
 
             for (int i = 0; i < args.length; i++) {
 
@@ -78,31 +74,26 @@ public class RecuentoApariciones {
                 }
 
             }
-            
+
         }
         return argumentos;
 
     }
 
-    
     public ArrayList<ProcessBuilder> PbProcesos(String[] args, Map<String, String> argumentos) {
 
-        
         ArrayList<ProcessBuilder> procesos = new ArrayList<>();
 
         for (int i = 0; i < args.length; i++) {
 
             if (args[i].equals("-t")) {
-                
+
                 ProcessBuilder pb = new ProcessBuilder(args[i + 1], args[i + 2], args[i + 3]);
 
                 pb.redirectInput(new File(argumentos.get("ENTRADA")));
                 pb.environment().put("CLASSPATH", argumentos.get("CLASSPATH"));
-                
 
-                
-
-                if (args[i + 4].equals("-fs")) { //ruta salida 'opcional'
+                if (args[i + 4].equals("-fs")) { // ruta salida 'opcional'
                     pb.redirectOutput(new File(args[i + 5]));
                 } else {
                     pb.redirectOutput(Redirect.appendTo(new File(argumentos.get("SALIDA"))));
@@ -116,41 +107,66 @@ public class RecuentoApariciones {
         return procesos;
 
     }
+
     public void lanzarProcesos(ArrayList<ProcessBuilder> procesos, File salida) throws IOException, InterruptedException {
+        Map<ProcessBuilder, Process> procesosError = new HashMap<>();
 
-        for (ProcessBuilder pb : procesos) { 
-            pb.start().waitFor();
+        for (ProcessBuilder pb : procesos) {
+            boolean ok = false;
 
-            
-            File salidaHijo = pb.redirectOutput().file();
+            while (!ok) {
+                Process proceso = pb.start();
+                int codigoSalida = proceso.waitFor();
 
-            if (!salidaHijo.getAbsolutePath().equals(salida.getAbsolutePath())) { 
+                if (codigoSalida == 0) {
+                    ok = true;
 
-                try (
-                        BufferedReader bf = new BufferedReader(new FileReader(salidaHijo));
-                        FileWriter fw = new FileWriter(salida, true)) {
+                    File salidaHijo = pb.redirectOutput().file();
 
-                    
-                    fw.write(bf.readLine() + "\n");
-
+                    if (!salidaHijo.getAbsolutePath().equals((salida.getAbsolutePath()))) {
+                        try (BufferedReader bf = new BufferedReader(new FileReader(salidaHijo));
+                            FileWriter fw = new FileWriter(salida, true)) {
+                            fw.write(bf.readLine() + "\n");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } else {
+                    procesosError.put(pb, proceso);
+                    ok = true;
                 }
-
             }
-
         }
 
-    }
+        if (!procesosError.isEmpty()) {
 
+            for (Map.Entry<ProcessBuilder, Process> cv : procesosError.entrySet()) {
+                ProcessBuilder pbFallido = cv.getKey();
+                boolean exito = false;
+
+                while (!exito) {
+                    Process proceso = pbFallido.start();
+                    int codigoSalida = proceso.waitFor();
+
+                    if (codigoSalida == 0) {
+
+                        exito = true;
+                        
+
+                        File salidaHijo = pbFallido.redirectOutput().file();
+                        if (!salidaHijo.getAbsolutePath().equals(salida.getAbsolutePath())) {
+                            try (BufferedReader bf = new BufferedReader(new FileReader(salidaHijo));
+                                FileWriter fw = new FileWriter(salida, true)) {
+
+                                fw.write(bf.readLine() + "\n");
+                            }
+                        }
+                    } else {
+                        procesosError.put(pbFallido, proceso);  
+                    }
+                }
+            }
+        }
+    }
 }
 
-                    
-
-                    
-                    
-
-
-                
-
-    
-
-            

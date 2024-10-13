@@ -1,0 +1,2 @@
+labor: actividad, tarea
+laboratorio: lugar en el que se hacen experimentos y trabajos generalmente relacionados con la ciencia

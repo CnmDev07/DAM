@@ -1,0 +1,3 @@
+bacteria: Organismo muy pequeño que a veces produce enfermedades
+banco: asiento alargado y estrecho donde pueden sentarse varias personas
+banco: establecimiento que guarda el dinero de sus clientes y da préstamos

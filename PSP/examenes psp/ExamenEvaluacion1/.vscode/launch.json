@@ -1,0 +1,90 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "BusquedaConcurrente",
+            "request": "launch",
+            "mainClass": "BusquedaConcurrente",
+            "projectName": "ExamenEvaluacion1_3dcdd7ee",
+            "args": "-n 1 v3.txt -n 3 v1.txt"
+        },
+        {
+            "type": "java",
+            "name": "Busqueda",
+            "request": "launch",
+            "mainClass": "Busqueda",
+            "projectName": "ExamenEvaluacion1_3dcdd7ee"
+        },
+        {
+            "type": "java",
+            "name": "Busqueda",
+            "request": "launch",
+            "mainClass": "Procesos.Busqueda",
+            "projectName": "ExamenEvaluacion1_3dcdd7ee"
+        },
+        {
+            "type": "java",
+            "name": "BusquedaConcurrente",
+            "request": "launch",
+            "mainClass": "Procesos.BusquedaConcurrente",
+            "projectName": "ExamenEvaluacion1_3dcdd7ee",
+            "args": "-n 1 src/Procesos/v3.txt -n 3 src/Procesos/v1.txt"
+        },
+        {
+            "type": "java",
+            "name": "Busqueda",
+            "request": "launch",
+            "mainClass": "Procesos.Busqueda",
+            "projectName": "ExamenEvaluacion1_35682200",
+            "args": "1"
+        },
+        {
+            "type": "java",
+            "name": "BusquedaConcurrente",
+            "request": "launch",
+            "mainClass": "Procesos.BusquedaConcurrente",
+            "projectName": "ExamenEvaluacion1_35682200",
+            "args": "-n 1 src\\Procesos\\v3.txt -n 3 src\\Procesos\\v1.txt"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "ExamenEvaluacion1_93ff911a"
+        },
+        {
+            "type": "java",
+            "name": "Principal",
+            "request": "launch",
+            "mainClass": "Hilos.Principal",
+            "projectName": "ExamenEvaluacion1_93ff911a"
+        },
+        {
+            "type": "java",
+            "name": "Busqueda",
+            "request": "launch",
+            "mainClass": "Procesos.Busqueda",
+            "projectName": "ExamenEvaluacion1_93ff911a",
+            "args": "1"
+        },
+        {
+            "type": "java",
+            "name": "BusquedaConcurrente",
+            "request": "launch",
+            "mainClass": "Procesos.BusquedaConcurrente",
+            "projectName": "ExamenEvaluacion1_93ff911a",
+            "args": "-n 1 v3.txt"
+        }
+    ]
+}
