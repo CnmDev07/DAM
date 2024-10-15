@@ -1,3 +1,23 @@
+/*15-Realizar una aplicación en Java que permita construir  dos Indices simples sobre  sobre el fichero 'Empleados';
+    los indices serán relativos a los campos:
+
+-CódigoEmpleado
+
+-Nombre-Apellidos
+
+El programa debe mostrar un menú con las siguientes opciones:
+
+1-Crear índice
+
+2-Alta Empleado
+
+3-Bajas
+
+4-Modificaciones
+
+5-Consultas
+
+6-Reconstruir fichero de Datos */
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Scanner;
@@ -6,6 +26,7 @@ import java.util.TreeMap;
 public class App {
 
     private static final String archivo_empleados = "empleados.dat";
+    private static final String indice_empleados = "indice.dat";
     private static TreeMap<String, Long> indiceCodigoEmpleado = new TreeMap<>();
     private static TreeMap<String, Long> indiceNombreApellidos = new TreeMap<>();
     private static Scanner sc = new Scanner(System.in);
@@ -59,7 +80,7 @@ public class App {
     }
 
     private static void crearIndices() {
-        try (RandomAccessFile raf = new RandomAccessFile(archivo_empleados, "r")) {
+        try (RandomAccessFile raf = new RandomAccessFile(indice_empleados, "r")) {
             long posicion;
             indiceCodigoEmpleado.clear();
             indiceNombreApellidos.clear();
@@ -143,6 +164,7 @@ public class App {
             raf.writeInt(departamento);
             raf.writeUTF(ciudad);
             raf.writeDouble(salario);
+            raf.writeInt(0); //Estado :0 (Activo)
 
             indiceCodigoEmpleado.put(codigo, pos);
             indiceNombreApellidos.put(nombre, pos);
