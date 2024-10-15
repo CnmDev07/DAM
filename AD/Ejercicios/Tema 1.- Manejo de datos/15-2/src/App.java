@@ -315,9 +315,24 @@ public class App {
             rafNuevo.close();
             rafOriginal.close();
 
-            
-        } catch (IOException e) {
-            e.printStackTrace();
+              // Renombrar archivo temporal a archivo principal
+        java.io.File originalFile = new java.io.File(archivo_empleados);
+        java.io.File tempFile = new java.io.File(archivoTemporal);
+
+        if (originalFile.delete()) {  // Borrar el archivo original
+            if (!tempFile.renameTo(originalFile)) {  // Renombrar el archivo temporal al original
+                System.out.println("Error al renombrar el archivo temporal.");
+            } else {
+                System.out.println("Compactado finalizado correctamente.");
+            }
+        } else {
+            System.out.println("Error al eliminar el archivo original.");
         }
+    } catch (IOException e) {
+        e.printStackTrace();
     }
 }
+}
+
+
+            
