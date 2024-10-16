@@ -107,23 +107,61 @@ public class RecuentoApariciones {
         return procesos;
 
     }
-
     public void lanzarProcesos(ArrayList<ProcessBuilder> procesos, File salida) throws IOException, InterruptedException {
         Map<ProcessBuilder, Process> procesosError = new HashMap<>();
-
+        ArrayList<Process> procesosEnEjecucion = new ArrayList<>();
+    
+        // Lanzo todos los procesos en paralelo
         for (ProcessBuilder pb : procesos) {
-            boolean ok = false;
-
-            while (!ok) {
-                Process proceso = pb.start();
-                int codigoSalida = proceso.waitFor();
-
+            Process proceso = pb.start();
+            procesosEnEjecucion.add(proceso);
+        }
+    
+        // Espero a que todos los procesos terminen
+        for (int i = 0; i < procesosEnEjecucion.size(); i++) {
+            Process proceso = procesosEnEjecucion.get(i);
+            ProcessBuilder pb = procesos.get(i);
+    
+            int codigoSalida = proceso.waitFor();
+    
+            if (codigoSalida == 0) {
+                
+                File salidaHijo = pb.redirectOutput().file();
+                if (!salidaHijo.getAbsolutePath().equals(salida.getAbsolutePath())) {
+                    try (BufferedReader bf = new BufferedReader(new FileReader(salidaHijo));
+                        FileWriter fw = new FileWriter(salida, true)) {
+                        fw.write(bf.readLine() + "\n");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+                // Guardar procesos fallidos
+                procesosError.put(pb, proceso);
+            }
+        }
+        if (!procesosError.isEmpty()) {
+            
+            ArrayList<Process> procesosFallidosEnEjecucion = new ArrayList<>();
+            ArrayList<ProcessBuilder> buildersFallidos = new ArrayList<>(procesosError.keySet());
+            
+            for (ProcessBuilder pbFallido : buildersFallidos) {
+                procesosFallidosEnEjecucion.add(pbFallido.start());
+            }
+        
+            
+            for (int i = 0; i < procesosFallidosEnEjecucion.size(); i++) {
+                Process procesoFallido = procesosFallidosEnEjecucion.get(i);
+                ProcessBuilder pbFallido = buildersFallidos.get(i); 
+        
+                int codigoSalida = procesoFallido.waitFor();
+        
+                
                 if (codigoSalida == 0) {
-                    ok = true;
-
-                    File salidaHijo = pb.redirectOutput().file();
-
-                    if (!salidaHijo.getAbsolutePath().equals((salida.getAbsolutePath()))) {
+                    
+                    File salidaHijo = pbFallido.redirectOutput().file();
+        
+                    if (!salidaHijo.getAbsolutePath().equals(salida.getAbsolutePath())) {
                         try (BufferedReader bf = new BufferedReader(new FileReader(salidaHijo));
                             FileWriter fw = new FileWriter(salida, true)) {
                             fw.write(bf.readLine() + "\n");
@@ -132,41 +170,10 @@ public class RecuentoApariciones {
                         }
                     }
                 } else {
-                    procesosError.put(pb, proceso);
-                    ok = true;
+                    
+                    System.out.println("Proceso fallido nuevamente: ");
                 }
             }
         }
 
-        if (!procesosError.isEmpty()) {
-
-            for (Map.Entry<ProcessBuilder, Process> cv : procesosError.entrySet()) {
-                ProcessBuilder pbFallido = cv.getKey();
-                boolean exito = false;
-
-                while (!exito) {
-                    Process proceso = pbFallido.start();
-                    int codigoSalida = proceso.waitFor();
-
-                    if (codigoSalida == 0) {
-
-                        exito = true;
-                        
-
-                        File salidaHijo = pbFallido.redirectOutput().file();
-                        if (!salidaHijo.getAbsolutePath().equals(salida.getAbsolutePath())) {
-                            try (BufferedReader bf = new BufferedReader(new FileReader(salidaHijo));
-                                FileWriter fw = new FileWriter(salida, true)) {
-
-                                fw.write(bf.readLine() + "\n");
-                            }
-                        }
-                    } else {
-                        procesosError.put(pbFallido, proceso);  
-                    }
-                }
-            }
-        }
-    }
-}
-
+}}
