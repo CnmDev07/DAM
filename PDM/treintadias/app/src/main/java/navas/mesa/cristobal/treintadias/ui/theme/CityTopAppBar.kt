@@ -26,13 +26,7 @@ fun CityTopAppBar(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                /*Image(
-                    painter = painterResource(R.drawable.ic_city_icon),  // Cambia al recurso adecuado
-                    contentDescription = null,  // Imagen decorativa
-                    modifier = Modifier
-                        .size(40.dp)  // Ajusta el tamaño según sea necesario
-                        .padding(8.dp)
-                )*/
+
                 Text(
                     text = stringResource(R.string.app_name),  // Cambia al recurso adecuado
                     style = MaterialTheme.typography.displayLarge

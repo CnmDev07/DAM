@@ -1,5 +1,6 @@
 package navas.mesa.cristobal.treintadias
 
+import CityItem
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,6 +12,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import navas.mesa.cristobal.treintadias.data.cities
 import navas.mesa.cristobal.treintadias.ui.theme.CityTopAppBar
@@ -22,7 +24,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             TreintadiasTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
+                    color = Color(0xFF2A3158)
                 ) {
                     CityApp()
                 }

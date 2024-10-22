@@ -19,8 +19,8 @@ val Typography = Typography(
         fontFamily = Firacode,
         fontWeight = FontWeight.Bold,
         fontSize = 36.sp,
-        //lineHeight = 24.sp,
-        //letterSpacing = 0.5.sp
+        lineHeight = 24.sp,
+        letterSpacing = 0.5.sp
     ),
     displayMedium = TextStyle(
         fontFamily = Firacode,
