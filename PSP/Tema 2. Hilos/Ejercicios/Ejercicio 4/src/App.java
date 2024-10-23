@@ -34,7 +34,7 @@ public class App {
         
         }, 30, TimeUnit.SECONDS);
 
-        // ses.schedule(() -> { //Lambda con una interfaz que tiene un único método abstracto
+        // ses.schedule(() -> { //Lambda con interfaz que tiene un único método abstracto
         // ses.shutdown();
         // }, 30, TimeUnit.SECONDS); 
         
