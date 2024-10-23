@@ -26,6 +26,7 @@ public class Actividad3 {
     
     
         fp.setVisible(true);
+        fp.setLocationRelativeTo(null);
     }
     public static List <String> leerArchivo(String archivo)throws IOException{
         List<String> lineas = new ArrayList<>();

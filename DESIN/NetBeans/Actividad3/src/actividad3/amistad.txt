@@ -1,2 +1,11 @@
-Frase - Autor
-hola hola - Manolito
+"La amistad duplica las alegrías y divide las angustias por la mitad." - Francis Bacon
+"Un amigo es uno que lo sabe todo de ti y a pesar de ello te quiere." - Elbert Hubbard
+"La amistad es un alma que habita en dos cuerpos; un corazón que habita en dos almas." - Aristóteles
+"Los amigos son la familia que elegimos para nosotros mismos." - Edna Buchanan
+"Un verdadero amigo es aquel que está a tu lado cuando preferiría estar en otro lugar." - Len Wein
+"La amistad es un amor que nunca se apaga." - Francis David
+"Un amigo es alguien que te da total libertad para ser tú mismo." - Jim Morrison
+"La amistad no se trata de a quién conoces más tiempo, sino de quién llegó y nunca se fue." - Gabriel García Márquez
+"La amistad es el único cemento que mantendrá el mundo unido." - Woodrow Wilson
+"Un amigo es alguien que te da lo que más necesita tu corazón." - Henry David Thoreau
+

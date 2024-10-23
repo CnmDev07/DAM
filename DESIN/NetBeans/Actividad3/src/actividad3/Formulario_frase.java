@@ -15,44 +15,20 @@ public class Formulario_frase extends javax.swing.JFrame {
     /**
      * Creates new form Formulario_frase
      */
-    public Formulario_frase() {
+    public Formulario_frase(String autor, String frase) {
         initComponents();
-        selecFrase();
-        
-    }
-    
-    public void setFrase(String frase){
         Lfrase.setText(frase);
-    }
-    
-    public void setAutor(String autor){
         Lautor.setText(autor);
+        this.setVisible(true);
+        setLocationRelativeTo(null);
+        
     }
     
     
-    public void selecFrase(){
-        Actividad3 act3 = new Actividad3();
-        String fraseElegida = "";
-        String frase = "";
-        String autor = "";
-        
-       
-        
-        
-        try{
-            
-            fraseElegida = act3.elegirFrase("amistad.txt");
-            String[] partes = fraseElegida.split(" - ");
-            frase = partes[0];
-            autor = partes[1];
-            
-            Lautor.setText(autor);
-            Lfrase.setText(frase);
-        
-    }catch(Exception e){
-            System.out.println("");
-    }
-    }
+   
+    
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,8 +76,9 @@ public class Formulario_frase extends javax.swing.JFrame {
         });
         jPanel1.add(Botrafrease, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 184, -1, -1));
 
+        Lfrase.setFont(new java.awt.Font("Liberation Sans", 1, 10)); // NOI18N
         Lfrase.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(Lfrase, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 290, 70));
+        jPanel1.add(Lfrase, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 310, 110));
 
         Lautor.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(Lautor, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 150, 20));
@@ -121,7 +98,9 @@ public class Formulario_frase extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BvolverActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new Formulario_principal().setVisible(true);
+        
     }//GEN-LAST:event_BvolverActionPerformed
 
     private void bsalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsalir2ActionPerformed

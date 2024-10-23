@@ -4,6 +4,8 @@
  */
 package actividad3;
 
+import actividad3.Actividad3;
+import actividad3.Formulario_frase;
 import java.io.IOException;
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class Formulario_principal extends javax.swing.JFrame {
      */
     public Formulario_principal() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -128,14 +131,9 @@ public class Formulario_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BsalirActionPerformed
 
     private void BamistadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BamistadActionPerformed
-      this.setVisible(false);
-
-    // Crea una nueva instancia de Formulario_frase
-    Formulario_frase formulario = new Formulario_frase();
-
-    // Elige una frase aleatoria del archivo "amistad.txt"
-    String fraseElegida = Actividad3.elegirFrase("amistad.txt");
-    
+      
+          String fraseElegida = Actividad3.elegirFrase("/home/crixo/Documentos/DEV/DESIN/NetBeans/Actividad3/src/actividad3/amistad.txt");
+        
     // Verifica que haya una frase válida y divídela en frase y autor
     if (!fraseElegida.isEmpty()) {
         String[] partes = fraseElegida.split(" - ");
@@ -145,14 +143,20 @@ public class Formulario_principal extends javax.swing.JFrame {
             String frase = partes[0];
             String autor = partes[1];
 
-            // Establece la frase y el autor en el formulario
-            formulario.setFrase(frase);
-            formulario.setAutor(autor);
+            // Crea y muestra el nuevo formulario
+            Formulario_frase formulario = new Formulario_frase(autor, frase);
+            this.setVisible(false); // Oculta la ventana actual
         }
+    } else {
+        // Manejo de error si no se obtiene una frase
+        System.out.println("No se pudo obtener una frase.");
     }
+    
+
+        
 
     // Muestra el formulario con la nueva frase
-    formulario.setVisible(true);
+    
         
         
         
