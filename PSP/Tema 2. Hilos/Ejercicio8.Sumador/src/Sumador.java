@@ -6,10 +6,10 @@ nueva suma. */
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class App {
-    private static volatile int suma = 0;
+public class Sumador {
+    private static int suma = 0;
     public static void main(String[] args) throws Exception {
-        
+        Sumador s = new Sumador();
         if(args.length == 0){
             System.out.println("Introduce una serie de numeros");
         }else{
@@ -22,10 +22,9 @@ public class App {
                     try{
                         int numero = Integer.parseInt(arg);
                         suma += numero;
+                        s.imprimirSuma(suma);
                         
-                        System.out.println(suma);
-                        Thread.sleep(2000);
-                    }catch(NumberFormatException | InterruptedException e){
+                    }catch(NumberFormatException e){
                         e.printStackTrace();
                     }
                 }
@@ -35,6 +34,16 @@ public class App {
             }
             es.shutdown();
 
+        }
+    }
+    private void imprimirSuma(int suma){
+        System.out.println(suma);
+        try{
+
+            Thread.sleep(2000);
+
+        }catch(InterruptedException e){
+            e.printStackTrace();
         }
     }
 }

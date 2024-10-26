@@ -11,16 +11,18 @@ import java.io.IOException;
  * @author crixo
  */
 public class Formulario_frase extends javax.swing.JFrame {
-
+    String archivo;
     /**
      * Creates new form Formulario_frase
      */
-    public Formulario_frase(String autor, String frase) {
+    public Formulario_frase(String autor, String frase, String archivoElegido) {
         initComponents();
         Lfrase.setText(frase);
         Lautor.setText(autor);
+        archivo = archivoElegido;
         this.setVisible(true);
         setLocationRelativeTo(null);
+        
         
     }
     
@@ -104,11 +106,25 @@ public class Formulario_frase extends javax.swing.JFrame {
     }//GEN-LAST:event_BvolverActionPerformed
 
     private void bsalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsalir2ActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_bsalir2ActionPerformed
 
     private void BotrafreaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotrafreaseActionPerformed
-        // TODO add your handling code here:
+        String fraseElegida = Actividad3.elegirFrase(archivo);
+        
+    
+    if (!fraseElegida.isEmpty()) {
+        String[] partes = fraseElegida.split(" - ");
+        
+        if (partes.length == 2) {
+            String frase = "<html>" + partes[0].replace("\n", "<br>") + "</html>";
+            String autor = partes[1];
+            
+            Lfrase.setText(frase);
+            Lautor.setText(autor);
+        }
+        }
+    
     }//GEN-LAST:event_BotrafreaseActionPerformed
 
     /**

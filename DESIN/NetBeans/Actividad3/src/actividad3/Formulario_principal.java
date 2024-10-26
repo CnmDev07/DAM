@@ -14,11 +14,15 @@ import java.util.List;
  * @author crixo
  */
 public class Formulario_principal extends javax.swing.JFrame {
+     String archivoAmistad = "src/actividad3/recursos/amistad.txt";
+     String archivoEsfuerzo ="src/actividad3/recursos/esfuerzo.txt";
+     String archivoFuturo = "src/actividad3/recursos/futuro.txt";
 
     /**
      * Creates new form Formulario_principal
      */
     public Formulario_principal() {
+        
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -59,6 +63,11 @@ public class Formulario_principal extends javax.swing.JFrame {
         });
 
         Bfuturo.setText("Futuro");
+        Bfuturo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BfuturoActionPerformed(evt);
+            }
+        });
 
         Bsalir.setText("Salir");
         Bsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -123,44 +132,76 @@ public class Formulario_principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BesfuerzoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BesfuerzoActionPerformed
-        // TODO add your handling code here:
+    String fraseElegida = Actividad3.elegirFrase(archivoEsfuerzo);
+        
+    
+    if (!fraseElegida.isEmpty()) {
+        String[] partes = fraseElegida.split(" - ");
+        
+        if (partes.length == 2) {
+            String frase = "<html>" + partes[0].replace("\n", "<br>") + "</html>";
+            String autor = partes[1];
+
+    
+    Formulario_frase formulario = new Formulario_frase(autor, frase, archivoEsfuerzo);
+    this.setVisible(false);
+        }
+    }
     }//GEN-LAST:event_BesfuerzoActionPerformed
 
     private void BsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BsalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_BsalirActionPerformed
 
     private void BamistadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BamistadActionPerformed
       
-          String fraseElegida = Actividad3.elegirFrase("/home/crixo/Documentos/DEV/DESIN/NetBeans/Actividad3/src/actividad3/amistad.txt");
+          String fraseElegida = Actividad3.elegirFrase(archivoAmistad);
         
-    // Verifica que haya una frase válida y divídela en frase y autor
+    
     if (!fraseElegida.isEmpty()) {
         String[] partes = fraseElegida.split(" - ");
         
-        // Si la frase tiene una estructura válida, asigna los valores a los JLabel
         if (partes.length == 2) {
-            String frase = partes[0];
+            String frase = "<html>" + partes[0].replace("\n", "<br>") + "</html>";
             String autor = partes[1];
 
-            // Crea y muestra el nuevo formulario
-            Formulario_frase formulario = new Formulario_frase(autor, frase);
-            this.setVisible(false); // Oculta la ventana actual
-        }
+    
+    Formulario_frase formulario = new Formulario_frase(autor, frase, archivoAmistad);
+    this.setVisible(false); 
+}
+
     } else {
-        // Manejo de error si no se obtiene una frase
+        
         System.out.println("No se pudo obtener una frase.");
     }
     
 
         
 
-    // Muestra el formulario con la nueva frase
+    
     
         
         
         
     }//GEN-LAST:event_BamistadActionPerformed
+
+    private void BfuturoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BfuturoActionPerformed
+              String fraseElegida = Actividad3.elegirFrase(archivoFuturo);
+        
+    
+    if (!fraseElegida.isEmpty()) {
+        String[] partes = fraseElegida.split(" - ");
+        
+        if (partes.length == 2) {
+            String frase = "<html>" + partes[0].replace("\n", "<br>") + "</html>";
+            String autor = partes[1];
+
+    
+    Formulario_frase formulario = new Formulario_frase(autor, frase, archivoFuturo);
+    this.setVisible(false);
+        }
+    }
+    }//GEN-LAST:event_BfuturoActionPerformed
 
     /**
      * @param args the command line arguments

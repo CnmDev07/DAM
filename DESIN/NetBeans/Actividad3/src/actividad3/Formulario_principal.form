@@ -110,6 +110,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Futuro"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BfuturoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Bsalir">
           <Properties>
