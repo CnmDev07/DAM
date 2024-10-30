@@ -1,33 +1,23 @@
-public class Numeros extends Thread{
-    
+class Numeros extends Thread {
     @Override
-    public void run(){
-
-        try{
-
-            for(int i = 1; i<= 100; i++){
-
-                System.out.println(i);
-                Thread.sleep(1000);
-                if(isInterrupted()){
-
-                    if(i % 2 == 0){
-
-                        System.out.println(i + " Es par");
-
-                    }else{
-                        System.out.println(i + " Es impar");
-                    }
-
+    public void run() {
+        for (int i = 1; i <= 100; i++) {
+            
+            if (isInterrupted()) {
+                System.out.println("Hilo Numeros interrumpido en el número " + i);
+                if (i % 2 == 0) {
+                    System.out.println(i + " es par, el hilo termina.");
+                    break;
+                } else {
+                    System.out.println(i + " es impar, el hilo continúa.");
                 }
             }
-
-        }catch(InterruptedException e){
-            interrupt();
-            System.out.println("Clase Numeros");
-            
+            System.out.println(i);
+            try {
+                Thread.sleep(1000); 
+            } catch (InterruptedException e) {
+                interrupt(); 
+            }
         }
-
     }
-
 }
