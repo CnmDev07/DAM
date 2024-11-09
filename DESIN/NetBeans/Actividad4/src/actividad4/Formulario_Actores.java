@@ -60,7 +60,7 @@ private DefaultListModel model;
          PreparedStatement statement = connection.prepareStatement(
              "DELETE FROM Actores WHERE nombre = ?")) {
 
-        // Configurar el parámetro de la consulta
+        
         statement.setString(1, actor);
         
         int filasEliminadas = statement.executeUpdate();
