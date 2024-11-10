@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MyCity</string>
+    <string name="fiestas">Fiestas</string>
+    <string name="gastronomia">Gastronomía</string>
+    <string name="historia">Historia</string>
+    <string name="sitios">Sitios</string>
+    <string name="caballa_con_babetas">Caballa con babetas</string>
+    <string name="cazon_en_adobo">Cazón en adobo</string>
+    <string name="ropavieja">Ropavieja</string>
+    <string name="tortilla_de_camarones">Tortilla de camarones</string>
+    <string name="carnaval">Carnaval</string>
+    <string name="entierro_de_la_caballa">Entierro de la caballa</string>
+    <string name="juanillos">Juanillos</string>
+    <string name="semana_santa">Semana Santa</string>
+    <string name="la_caleta">La caleta</string>
+    <string name="catedral">Catedral</string>
+    <string name="gran_teatro_falla">Gran Teatro Falla</string>
+    <string name="torre_tavira">Torre Tavira</string>
+    <string name="monumento_a_la_constitucion">Monumento a la Constitución</string>
+    <string name="gades">Gades</string>
+    <string name="hercules">Hercules</string>
+    <string name="oratorio_san_felipe_neri">Oratorio San Felipe Neri</string>
+</resources>
